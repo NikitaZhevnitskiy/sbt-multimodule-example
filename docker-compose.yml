@@ -1,0 +1,8 @@
+version: '3'
+services:
+  microservice:
+    build: ./microservice
+    image: zhenik/microservice:1.0.0
+    environment:
+      MICROSERVICE_HOST: "somehost"
+      MICROSERVICE_PORT: 11111
