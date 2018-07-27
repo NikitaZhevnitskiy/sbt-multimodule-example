@@ -1,16 +1,20 @@
 # sbt multi module project
+
 This repository is setup to provide a basic understanding of [SBT](https://github.com/sbt/sbt)
 
 ## Goals
-* create multi module sbt project
-* set inner module as a dependency to another inner module 
-* produce fat-jar (uber jar) 
-* docker plugin
 
-### Multimodule project
+* 1 create multi module sbt project
+* 2 set inner module as a dependency to another inner module 
+* 3 produce fat-jar (uber jar) 
+* 4 create test coverage report
+
+### 1 Multimodule project
+
 Sbt gives a lot of freedom and flexibility in project build definition. 
 I like the way how its defined in [official documentation](https://www.scala-sbt.org/release/docs/Basic-Def-Examples.html).
 Root module with 2 sub modules have next view: 
+
 ```scala
 lazy val rootProject = project
   .in(file("."))
@@ -42,9 +46,17 @@ lazy val microservice = project
   .dependsOn(schemas)
 ```
 
+### 2 Sub module as dependency to other sub module
 
-### Fat-jar
-Plugin assembly defined in `/project/assembly.sbt`.
+Use method `.dependsOn()` - Adds classpath dependencies on internal or external projects.
+
+```scala
+lazy val microservice = project
+  .dependsOn(schemas)
+```
+
+### 3 Fat-jar
+[Plugin assembly](https://github.com/sbt/sbt-assembly) is defined in `/project/assembly.sbt`.
 
 ```scala
 addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.7")
@@ -61,3 +73,15 @@ lazy val microservice = project
 ```
 
 To produce fat-jar execute `sbt assembly`
+
+### 4 Test coverage report
+
+Test coverage plugin in `/project/plugins.sbt`
+
+```scala
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.1")
+```
+
+Execute `sbt clean coverage test coverageReport`. 
+
+Check `/microservice/target/scala-x.x.x/scoverage-report/index.html`
