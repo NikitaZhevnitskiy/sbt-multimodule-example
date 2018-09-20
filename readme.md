@@ -85,3 +85,9 @@ addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.1")
 Execute `sbt clean coverage test coverageReport`. 
 
 Check `/microservice/target/scala-x.x.x/scoverage-report/index.html`
+
+### Notes: sbt
+[SBT](https://github.com/sbt/sbt)  
+Verify sbt version, it should be 1.2.X >
+version: `sbt sbtVersion`  
+inspect: `sbt 'inspect sbtVersion'`
