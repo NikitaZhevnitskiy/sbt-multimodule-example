@@ -49,7 +49,7 @@ lazy val schemas = project
   .settings(
     name := "schemas",
     settings,
-    libraryDependencies ++= Seq(dependencies.akkaHttpSpray)
+    libraryDependencies ++= Seq(Dependency.akkaHttpSpray)
   )
 
 lazy val microservice = project
@@ -62,30 +62,12 @@ lazy val microservice = project
   )
   .dependsOn(schemas)
 
-                                      /** dependencies */
-lazy val dependencies = new {
-
-  val akkaHttpV     = "10.1.3"
-  val akkaStreamsV  = "2.5.14"
-  val scalaTestV    = "3.0.4"
-  val slickV        = "3.2.3"
-
-  val akkaHttp            = "com.typesafe.akka"   %% "akka-http"            % akkaHttpV
-  val akkaStreams         = "com.typesafe.akka"   %% "akka-stream"          % akkaStreamsV
-  val akkaHttpCore        = "com.typesafe.akka"   %% "akka-http-core"       % akkaHttpV
-  val akkaHttpSpray       = "com.typesafe.akka"   %% "akka-http-spray-json" % akkaHttpV
-
-  // test dependencies
-  val scalaTest           = "org.scalatest"       %% "scalatest"            % scalaTestV % Test
-
-}
-
 lazy val commonDependencies = Seq(
-  dependencies.akkaHttp,
-  dependencies.akkaStreams,
-  dependencies.akkaHttpCore
+  Dependency.akkaHttp,
+  Dependency.akkaStreams,
+  Dependency.akkaHttpCore
 )
 
 lazy val testDependencies = Seq(
-  dependencies.scalaTest
+  Dependency.scalaTest
 )
