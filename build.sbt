@@ -1,4 +1,4 @@
-
+import scalariform.formatter.preferences._
 
 // Project setup
 val rootPackage = "ru.zhenik"
@@ -71,3 +71,9 @@ lazy val commonDependencies = Seq(
 lazy val testDependencies = Seq(
   Dependency.scalaTest
 )
+
+// code formatter, executed on goal:compile by default
+scalariformPreferences := scalariformPreferences.value
+  .setPreference(AlignSingleLineCaseStatements, true)
+  .setPreference(DoubleIndentConstructorArguments, true)
+  .setPreference(DanglingCloseParenthesis, Preserve)

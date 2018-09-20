@@ -11,8 +11,6 @@ private[microservice] object Configuration {
     Configuration(
       HttpConfig(
         configFromFile.getString("microservice.http.host"),
-        configFromFile.getInt("microservice.http.port")
-      )
-    )
+        configFromFile.getInt("microservice.http.port")))
   }
 }
